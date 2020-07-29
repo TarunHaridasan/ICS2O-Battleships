@@ -1,0 +1,632 @@
+/*
+	Tarun Haridasan, Brian Ly, Alex Sun
+	2019-06-03
+	styles.css
+	The styles page contains all the styles for the game
+*/
+* 
+{
+	font-family: 'Oswald', sans-serif;
+	background-size: cover;	
+	cursor: url('images/crosshair.cur'), default;
+} 
+#titleScreen 
+{
+	background-image: url(images/battleshipBackground.jpg);
+	height: 999px;
+	width: 100%;
+}
+#title 
+{
+	font-size: 10em;
+	margin-top: -2%;
+	text-align: center;
+	color: black;
+}
+#musicPlayer 
+{
+	position: absolute;
+}
+#subTitle 
+{
+	font-size: 3em;
+	margin-top: 0%;
+	text-align: center;
+	color: black;
+}
+@keyframes blinkingText
+{
+    0%
+    {    
+    	color: red;
+    }
+    30%
+    {
+    	color: yellow; 
+	}
+    55%
+    {
+    	color: green; 
+    }
+    75%
+    {    
+    	color: blue;  
+    }
+    88%
+    {   
+    	color: purple;    
+    }
+    100%
+    {   
+    	color: magenta;    
+    }
+}
+#txtName 
+{
+	font-size: 3em;
+	text-align: center;
+	margin-left: 38%;
+	margin-top: -10%;
+	color: black;
+}
+#name 
+{
+	color: black;
+	font-size: 3em;
+	margin-left: 7%;
+	margin-bottom: -2%;
+}
+#chooseDifficulty 
+{
+	margin-top: 7%;
+	font-size: 3em;
+	margin-bottom: -3.5%;
+}
+#selChooseDifficulty 
+{
+	width: 400px;
+	margin-left: 40%;
+	font-size: 3em;
+}
+#easy
+{
+  background: green;
+}
+#medium
+{
+  background: yellow;
+}
+#hard
+{
+  background: red;
+}
+#btnPlayGame
+{
+	margin-top: 5%;
+	width: 300px;
+	height: 100px;
+	margin-left: 25%;
+	margin-bottom: -100%;
+	background-color: green;
+	color: white;
+	display: inline-block;
+	border-radius: 50px;
+	box-shadow: 0 7px black;
+	font-size: 2.5em;
+}
+#btnHelp
+{
+	width: 300px;
+	height: 100px;
+	margin-left: 15%;
+	margin-top: 0%;
+	background-color: red;
+	color: white;
+	display: inline-block;
+	position: relative;
+	border-radius: 100px;
+	box-shadow: 0 7px black;
+	font-size: 2.5em;
+}
+#btnPlayGame:active
+{
+	background-color: rgb(4, 104, 15);
+	box-shadow: 0 5px #666;
+	transform: translateY(15px);
+	transition: 0.1s;
+}
+#btnHelp:active 
+{
+	background-color: rgb(104, 3, 3);
+	box-shadow: 0 5px #666;
+	transform: translateY(15px);
+	transition: 0.1s;
+} 
+#titleScreenFieldError 
+{
+	background-color: red;
+	width: 20%;
+	height: 150px;
+	margin-top: -15%;
+	display: none;
+}
+#shipPlacement 
+{
+	width: 100%;
+	height: 950px;
+	background-image: url(images/oceanBackground.jpg);	
+	background-size: cover;
+	display: none;
+}
+.board
+{
+	height: 80px;
+	width: 80px;
+	background-color: transparent;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+}
+.AiBoard
+{
+	height: 80px;
+	width: 80px;
+	background-color: transparent;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
+	margin: 0%;
+	padding: 0%;
+}
+.hit
+{
+	filter: saturate(110%) brightness(100%) contrast(1);		
+}
+.waterAnimation 
+{
+	
+}
+.hiti 
+{
+	background-color: red;
+}
+.iship
+{
+	background-color: transparent;
+}
+.ship
+{	
+}
+.miss
+{
+	background-color: white;
+}
+.shipOutline
+{
+	background-color: lightblue;
+}
+#controlShipPlacement 
+{
+	margin-left: 55%;
+	margin-top: -42%;
+}
+#info 
+{
+	font-size: 2.4em;
+	margin-left: 20%;
+}
+#sizeTwoShip, #sizeThreeShip1,#sizeThreeShip2, #sizeFourShip, #sizeFiveShip 
+{
+	font-size: 3em;
+	width: 400px;
+	margin-bottom: 2%;
+	height: 125px;
+	color: white;
+	background-color: rgb(43, 180, 255);
+	border: solid;
+	border-color: darkblue;
+}
+#sizeTwoShip
+{
+	background-image: url(images/shipDestroyerFull.png);
+	background-position: center;
+	background-size: 110%;
+}
+#sizeThreeShip1
+{
+	background-image: url(images/shipCruiserFull.png);
+	background-position: center;
+	background-size: 250%;
+}
+#sizeThreeShip2
+{
+	background-image: url(images/shipSubmarineFull.png);
+	background-position: center;
+	background-size: 260%;
+}
+#sizeFourShip
+{
+	background-image: url(images/shipBattleshipFull.png);
+	background-position: center;
+	background-size: 350%;
+}
+#sizeFiveShip
+{
+	background-image: url(images/shipCarrierFull.png);
+	background-position: center;
+	background-size: 500%;
+}
+#shipSelectorGUI
+{
+	margin-top: -7%;
+	margin-left: 20%;
+}
+#shipPlacementBoard tr, #shipPlacementBoard td, #AiBoard tr, #AiBoard td
+{
+	padding: 0;
+	margin-top: -3%;
+	margin-bottom: 0%;
+}
+#shipPlacementBoard 
+{
+	background-image: url(images/userFleet.png);
+	background-size: cover;
+	width: 50%;
+}
+#AiBoard
+{
+	background-image: url(images/enemyFleet.png);
+	background-size: cover;
+	width: 100%;
+}
+table 
+{
+	border-collapse: collapse;
+	display: block;
+}
+#right 
+{
+	margin: 0%;
+}
+#testasdasdasd 
+{
+	background-image: url(images/shipDestroyer.png);
+}
+.noBorder 
+{
+	border: none;
+}
+#numbericLabels 
+{
+	font-family: 'Anton', sans-serif;
+	font-size: 2em;
+	text-align: center;
+}
+#alphaLabel 
+{
+	font-size: 2em;
+	text-align: center;
+}
+#aiBoardStatus 
+{
+	margin-left: 61%;
+	margin-top: -40.5%;
+	display: none;
+}
+#endGameScreen 
+{
+	background-image: url(images/shipsAliveWin.jpg);
+	background-image: cover;
+	filter: contrast(1.1);
+	filter: grayscale(0.2);
+	height: 950px;
+	width: 100%;
+	display: none;
+}
+#winOrLose 
+{
+	font-size: 7em;
+	margin-left: 23%;
+}
+#timeElapsed, #aiShipsPiecesHit, #aiShipsMissed, #yourShipsHit, #yourShipsMissed 
+{
+	font-size: 3em;
+	margin-left: 4%;
+	color: white;
+	margin-top: 5%;
+	line-height: 110px;
+}
+#btnPlayAgain
+{
+	margin-top: 5%;
+	width: 350px;
+	height: 150px;
+	margin-left: 65%;
+	position: absolute;
+	background-color: green;
+	color: white;
+	display: inline-block;
+	margin-top: -25%;
+	border-radius: 50px;
+	box-shadow: 0 7px black;
+	font-size: 2.5em;
+}
+#btnExit 
+{
+	width: 350px;
+	height: 150px;
+	margin-left: 65%;
+	margin-top: -11%;
+	background-color: red;
+	color: white;
+	display: inline-block;
+	position: absolute;
+	border-radius: 50px;
+	box-shadow: 0 7px black;
+	font-size: 2.5em;
+}
+#btnPlayAgain:active
+{
+	background-color: rgb(4, 104, 15);
+	box-shadow: 0 5px #666;
+	transform: translateY(15px);
+	transition: 0.1s;	
+}
+#btnExit:active
+{
+	background-color: rgb(104, 3, 3);
+	box-shadow: 0 5px #666;
+	transform: translateY(15px);
+	transition: 0.1s;
+}
+.rainbow-text {
+  
+	font-family: 'Pacifico', cursive;
+	text-shadow: 2px 2px 4px #000000;
+	font-size:40px;
+	-webkit-animation: rainbow 5s infinite; 
+	-ms-animation: rainbow 5s infinite;
+	animation: rainbow 5s infinite; 
+}
+@-webkit-keyframes rainbow{
+	0%
+	{
+		color: red;
+	}	
+	10%
+	{
+		color: magenta;
+	}	
+	20%
+	{
+		color: yellow;
+	}
+	30%
+	{
+		color: green;
+	}
+	40%
+	{
+		color: purple;
+	}
+	50%
+	{
+		color: pink;
+	}
+	60%
+	{
+		color: cyan;
+	}
+	70%
+	{
+		color: magenta;
+	}
+	80%
+	{
+		color: brown;
+	}
+	90%
+	{
+		color: white;
+	}
+	100%
+	{
+		color: orange;
+	}
+}
+#displayTurns 
+{
+	font-size: 4em;
+	margin-top: -5%;
+	margin-bottom: -2%;
+	color: lime;
+	position: absolute;
+	display: none;
+}
+#btnClickAiTurn
+{
+	width: 350px;
+	height: 100px;
+	background-color: green;
+	color: white;
+	position: absolute;
+	margin-top: 6%;
+	margin-left: -54%;
+	display: inline-block;
+	border-radius: 50px;
+	box-shadow: 0 7px black;
+	font-size: 2.5em;
+	display: none;
+}
+}
+#btnClickAiTurn:active 
+{
+	background-color: rgb(4, 104, 15);
+	box-shadow: 0 5px #666;
+	transform: translateY(15px);
+	transition: 0.1s;	
+}
+.animationImage 
+{
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	margin-left: -53%;
+	margin-top: -40%;
+}
+#turnManager 
+{
+	margin-left: 
+}
+#missileLock 
+{
+	margin-left: 65%;
+	margin-top: -5%;
+}
+#missileLockLocation 
+{
+	width: 	250px;
+	height: 70px;
+	margin-top: 5%;
+	margin-left: 9.15%;
+	font-size: 5em;
+	text-align: center;
+	display: none;	
+	position: absolute;
+}
+#previousTurnInformation 
+{
+	width: 200px;
+	height: 150px;	
+	text-align: center;	
+	margin-top: 1%;
+	width: 40%;
+	display: none;
+	background-color: red;
+	position: absolute;
+}
+#hitOrMiss 
+{
+	font-size: 3em;
+}
+#loadingGIF 
+{
+	position: absolute;
+	width: 200px;
+	margin-left: 14%;
+	margin-top: 15%;
+}
+@font-face 
+{
+	font-family: "bit";
+	src: url("font/PressStart2P.ttf");
+}
+@font-face 
+{
+	font-family: "DisposableDroidBB";
+	src: url("font/DisposableDroidBB.otf");
+}
+@keyframes flickerAnimation 
+{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation
+{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation
+{
+  0%   
+  { 
+  	opacity:1; 
+  }
+  50%  
+  { 
+  	opacity:0; 
+  }
+  100% 
+  { 
+  	opacity:1; 
+  }
+}
+@-webkit-keyframes flickerAnimation
+{
+  0%   
+  {
+  	opacity:1; 
+  }
+  50%  
+  { 
+  	opacity:0; 
+  }
+  100% 
+  {
+   opacity:1; 
+  }
+}
+#animate-flicker 
+{
+   -webkit-animation: flickerAnimation 1.5s infinite;
+   -moz-animation: flickerAnimation 1.5s infinite;
+   -o-animation: flickerAnimation 1.5s infinite;
+    animation: flickerAnimation 1.5s infinite;
+    text-align: center;
+    margin-top: 400px;
+    color: rgb(237, 242, 255);
+    font-size: 25px;
+    font-family: bit;
+    border-style: solid;
+    padding-top: 20px;
+    padding-bottom:20px;
+    margin-left:300px;
+    margin-right:300px;
+    border-radius: 30px;
+}
+#titleScreen
+{
+	background: url("images/background.jpg");
+	margin-top: -6%;
+}
+#title
+{
+	margin-top: 75px;
+	text-align: center;
+	font-size: 200px;
+	color: white;
+	font-family: DisposableDroidBB;
+}
+#names
+{
+	color: white;
+	text-align: center;
+	font-size: 50px;
+	font-family: DisposableDroidBB;
+	margin-top: -75px;
+}
+#scoreboard
+{
+	position: absolute;
+	margin-left: 39%;
+	margin-top: -42%;
+	margin-right: 0%;
+	font-size: 1.5em;
+	display: none;
+}
+#aiScoreBoard 
+{
+	position: absolute;
+	margin-left: 39%;
+	margin-top: -20%;
+	margin-right: 0%;
+	font-size: 1.5em;
+	display: none;
+}
+/* Progress Bar Styling */
+progress[value]::-webkit-progress-value 
+{ 
+	background: blue; 
+}

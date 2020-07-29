@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			Tarun Haridasan, Alex Sun, Brian Ly
+			2019/06/03
+			Battleships HTMl page
+			This is the HTML page that runs the Battlesship game code
+		-->
+		<title>Battleships</title>
+		<script
+  			src="https://code.jquery.com/jquery-3.4.1.js"
+  			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  			crossorigin="anonymous">
+		</script>
+		<script type="text/javascript" src="js/jQueryUI.js"></script>
+		<script type="text/javascript" src="code.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Oswald:700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+	</head>
+		<!--Start Music
+		<embed id="musicPlayer" height="0" width="0" volume="0.1" src="sound/gameBackgroundMusic.mp3" loop="true" autostart="true"> </embed> -->
+		<audio loop autoplay id="musicPlayer" height="0" width="0">
+			<source src="sound/gameBackgroundMusic.mp3">
+		</audio>
+	<body>
+		<!--Brian's Title Screnn-->
+		<div id="titleScreen">
+			<h1 id="title">Battleships!</h1>
+			<h3 id="names">By: Tarun Haridasan, Alex Sun, and Brian Ly</h3>
+			<div id="animate-flicker">-Press Any Key to Start-</div>
+		</div>
+		<!--Main game screen-->
+		<div id="shipPlacement">
+			<!--Table of 81 buttons. The first value is number of boxes down, and second is number of boxes to the right-->
+			<table id="shipPlacementBoard" cellspacing="0" cellpadding="0">
+				<tr>
+					<th id="numbericLabels"><b></b></th>
+					<th id="numbericLabels"><b>1</b></th>
+					<th id="numbericLabels"><b>2</b></th>
+					<th id="numbericLabels"><b>3</b></th>
+					<th id="numbericLabels"><b>4</b></th>
+					<th id="numbericLabels"><b>5</b></th>
+					<th id="numbericLabels"><b>6</b></th>
+					<th id="numbericLabels"><b>7</b></th>
+					<th id="numbericLabels"><b>8</b></th>
+					<th id="numbericLabels"><b>9</b></th>
+				</tr>				
+				<tr>
+					<td id="alphaLabel"><b>A</b></dh>
+					<td><button id="00" class="board">A1</button></td>
+					<td><button id="01" class="board">A2</button></td>
+					<td><button id="02" class="board">A3</button></td>
+					<td><button id="03" class="board">A4</button></td>
+					<td><button id="04" class="board">A5</button></td>
+					<td><button id="05" class="board">A6</button></td>
+					<td><button id="06" class="board">A7</button></td>
+					<td><button id="07" class="board">A8</button></td>					
+					<td><button id="08" class="board">A9</button></td>
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>B</b></td>
+					<td><button id="10" class="board">B1</button></td>
+					<td><button id="11" class="board">B2</button></td>
+					<td><button id="12" class="board">B3</button></td>
+					<td><button id="13" class="board">B4</button></td>
+					<td><button id="14" class="board">B5</button></td>
+					<td><button id="15" class="board">B6</button></td>
+					<td><button id="16" class="board">B7</button></td>
+					<td><button id="17" class="board">B8</button></td>
+					<td><button id="18" class="board">B9</button></td>
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>C</b></td>
+					<td><button id="20" class="board">C1</button></td>
+					<td><button id="21" class="board">C2</button></td>
+					<td><button id="22" class="board">C3</button></td>
+					<td><button id="23" class="board">C4</button></td>
+					<td><button id="24" class="board">C5</button></td>
+					<td><button id="25" class="board">C6</button></td>
+					<td><button id="26" class="board">C7</button></td>
+					<td><button id="27" class="board">C8</button></td>
+					<td><button id="28" class="board">C9</button></td>
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>D</b></td>
+					<td><button id="30" class="board">D1</button></td>
+					<td><button id="31" class="board">D2</button></td>
+					<td><button id="32" class="board">D3</button></td>
+					<td><button id="33" class="board">D4</button></td>
+					<td><button id="34" class="board">D5</button></td>
+					<td><button id="35" class="board">D6</button></td>
+					<td><button id="36" class="board">D7</button></td>
+					<td><button id="37" class="board">D8</button></td>
+					<td><button id="38" class="board">D9</button></td>				
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>E</b></td>
+					<td><button id="40" class="board">E1</button></td>
+					<td><button id="41" class="board">E2</button></td>
+					<td><button id="42" class="board">E3</button></td>
+					<td><button id="43" class="board">E4</button></td>
+					<td><button id="44" class="board">E5</button></td>
+					<td><button id="45" class="board">E6</button></td>
+					<td><button id="46" class="board">E7</button></td>
+					<td><button id="47" class="board">E8</button></td>
+					<td><button id="48" class="board">E9</button></td>				
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>F</b></td>
+					<td><button id="50" class="board">F1</button></td>
+					<td><button id="51" class="board">F2</button></td>
+					<td><button id="52" class="board">F3</button></td>
+					<td><button id="53" class="board">F4</button></td>
+					<td><button id="54" class="board">F5</button></td>
+					<td><button id="55" class="board">F6</button></td>
+					<td><button id="56" class="board">F7</button></td>
+					<td><button id="57" class="board">F8</button></td>
+					<td><button id="58" class="board">F9</button></td>				
+				</tr>				
+				<tr>
+					<td id="alphaLabel"><b>G</b></dh>
+					<td><button id="60" class="board">G1</button></td>
+					<td><button id="61" class="board">G2</button></td>
+					<td><button id="62" class="board">G3</button></td>
+					<td><button id="63" class="board">G4</button></td>
+					<td><button id="64" class="board">G5</button></td>
+					<td><button id="65" class="board">G6</button></td>
+					<td><button id="66" class="board">G7</button></td>
+					<td><button id="67" class="board">G8</button></td>
+					<td><button id="68" class="board">G9</button></td>				
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>H</b></td>
+					<td><button id="70" class="board">H1</button></td>
+					<td><button id="71" class="board">H2</button></td>
+					<td><button id="72" class="board">H3</button></td>
+					<td><button id="73" class="board">H4</button></td>
+					<td><button id="74" class="board">H5</button></td>
+					<td><button id="75" class="board">H6</button></td>
+					<td><button id="76" class="board">H7</button></td>
+					<td><button id="77" class="board">H8</button></td>
+					<td><button id="78" class="board">H9</button></td>				
+				</tr>
+				<tr>
+					<td id="alphaLabel"><b>I</b></td>
+					<td><button id="80" class="board">I1</button></td>
+					<td><button id="81" class="board">I2</button></td>
+					<td><button id="82" class="board">I3</button></td>
+					<td><button id="83" class="board">I4</button></td>
+					<td><button id="84" class="board">I5</button></td>
+					<td><button id="85" class="board">I6</button></td>
+					<td><button id="86" class="board">I7</button></td>
+					<td><button id="87" class="board">I8</button></td>
+					<td><button id="88" class="board">I9</button></td>				
+				</tr>
+			</table>
+			<!-- The GUI on the right side of the screen, that lets you chose which ship to place-->
+			<div id="controlShipPlacement">
+				<h3 id="info">Select a ship below:</h3>
+				<br><br>
+				<div id="shipSelectorGUI">
+					<button id="sizeTwoShip">Destroyer</button>
+					<br>
+					<button id="sizeThreeShip1">Cruiser</button>
+					<br>
+					<button id="sizeThreeShip2">Submarine</button>
+					<br>
+					<button id="sizeFourShip">Battleship</button>	
+					<br>
+					<button id="sizeFiveShip">Carrier</button>
+				</div>
+			</div>
+			<!--This is the the scoreboard that shows all the ships you have sunk.-->
+			<div id="scoreboard">
+				<h2>Your Health:</h2>
+				<ul>
+					<li>
+						Destroyer&nbsp;&#8202;&#8202;&#8202;
+						<progress id="destroyerHealthBar" value="2" max="2" content="100%"></progress>
+					</li>
+					
+					<li>
+						Cruiser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8202;&#8202;&#8202;
+						<progress id="cruiserHealthBar" value="3" max="3"></progress>
+					</li>
+					
+					<li>
+						Submarine&#8202;
+						<progress id="submarineHealthBar" value="3" max="3"></progress>
+					</li>
+					
+					<li>
+						Battleship&nbsp;
+						<progress id="battleshipHealthBar"value="4" max="4"></progress>
+					</li>
+					
+					<li>
+						Carrier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<progress id="carrierHealthBar"value="5" max="5"></progress>
+					</li>					
+				</ul>			
+			</div>
+			<!--This the score board of the AI-->
+			<div id="aiScoreBoard">
+				<h2>Enemy Health:</h2>
+				<ul>
+					<li>
+						Destroyer&nbsp;&#8202;&#8202;&#8202;
+						<progress id="aiDestroyerHealthBar" value="2" max="2"></progress>
+					</li>
+					
+					<li>
+						Cruiser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8202;&#8202;&#8202;
+						<progress id="aiCruiserHealthBar" value="3" max="3"></progress>
+					</li>
+					
+					<li>
+						Submarine&#8202;
+						<progress id="aiSubmarineHealthBar" value="3" max="3"></progress>
+					</li>
+					
+					<li>
+						Battleship&nbsp;
+						<progress id="aiBattleshipHealthBar"value="4" max="4"></progress>
+					</li>
+					
+					<li>
+						Carrier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<progress id="aiCarrierHealthBar"value="5" max="5"></progress>
+					</li>					
+				</ul>			
+			</div>
+			<!--The AI's board, that you shoot at-->
+			<div id="aiBoardStatus">
+				<table id="AiBoard">
+					<tr>
+						<th id="numbericLabels"><b></b></th>
+						<th id="numbericLabels"><b>1</b></th>
+						<th id="numbericLabels"><b>2</b></th>
+						<th id="numbericLabels"><b>3</b></th>
+						<th id="numbericLabels"><b>4</b></th>
+						<th id="numbericLabels"><b>5</b></th>
+						<th id="numbericLabels"><b>6</b></th>
+						<th id="numbericLabels"><b>7</b></th>
+						<th id="numbericLabels"><b>8</b></th>
+						<th id="numbericLabels"><b>9</b></th>
+					</tr>	
+					<tr>
+						<td id="alphaLabel"><b>A</b></td>
+						<td><button id="i00" class="AiBoard">A1</button></td>
+						<td><button id="i01" class="AiBoard">A2</button></td>
+						<td><button id="i02" class="AiBoard">A3</button></td>
+						<td><button id="i03" class="AiBoard">A4</button></td>
+						<td><button id="i04" class="AiBoard">A5</button></td>
+						<td><button id="i05" class="AiBoard">A6</button></td>
+						<td><button id="i06" class="AiBoard">A7</button></td>
+						<td><button id="i07" class="AiBoard">A8</button></td>
+						<td><button id="i08" class="AiBoard">A9</button></td>
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>B</b></td>
+						<td><button id="i10" class="AiBoard">B1</button></td>
+						<td><button id="i11" class="AiBoard">B2</button></td>
+						<td><button id="i12" class="AiBoard">B3</button></td>
+						<td><button id="i13" class="AiBoard">B4</button></td>
+						<td><button id="i14" class="AiBoard">B5</button></td>
+						<td><button id="i15" class="AiBoard">B6</button></td>
+						<td><button id="i16" class="AiBoard">B7</button></td>
+						<td><button id="i17" class="AiBoard">B8</button></td>
+						<td><button id="i18" class="AiBoard">B9</button></td>
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>C</b></td>
+						<td><button id="i20" class="AiBoard">C1</button></td>
+						<td><button id="i21" class="AiBoard">C2</button></td>
+						<td><button id="i22" class="AiBoard">C3</button></td>
+						<td><button id="i23" class="AiBoard">C4</button></td>
+						<td><button id="i24" class="AiBoard">C5</button></td>
+						<td><button id="i25" class="AiBoard">C6</button></td>
+						<td><button id="i26" class="AiBoard">C7</button></td>
+						<td><button id="i27" class="AiBoard">C8</button></td>
+						<td><button id="i28" class="AiBoard">C9</button></td>
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>D</b></td>
+						<td><button id="i30" class="AiBoard">D1</button></td>
+						<td><button id="i31" class="AiBoard">D2</button></td>
+						<td><button id="i32" class="AiBoard">D3</button></td>
+						<td><button id="i33" class="AiBoard">D4</button></td>
+						<td><button id="i34" class="AiBoard">D5</button></td>
+						<td><button id="i35" class="AiBoard">D6</button></td>
+						<td><button id="i36" class="AiBoard">D7</button></td>
+						<td><button id="i37" class="AiBoard">D8</button></td>
+						<td><button id="i38" class="AiBoard">D9</button></td>				
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>E</b></td>
+						<td><button id="i40" class="AiBoard">E1</button></td>
+						<td><button id="i41" class="AiBoard">E2</button></td>
+						<td><button id="i42" class="AiBoard">E3</button></td>
+						<td><button id="i43" class="AiBoard">E4</button></td>
+						<td><button id="i44" class="AiBoard">E5</button></td>
+						<td><button id="i45" class="AiBoard">E6</button></td>
+						<td><button id="i46" class="AiBoard">E7</button></td>
+						<td><button id="i47" class="AiBoard">E8</button></td>
+						<td><button id="i48" class="AiBoard">E9</button></td>				
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>F</b></td>
+						<td><button id="i50" class="AiBoard">F1</button></td>
+						<td><button id="i51" class="AiBoard">F2</button></td>
+						<td><button id="i52" class="AiBoard">F3</button></td>
+						<td><button id="i53" class="AiBoard">F4</button></td>
+						<td><button id="i54" class="AiBoard">F5</button></td>
+						<td><button id="i55" class="AiBoard">F6</button></td>
+						<td><button id="i56" class="AiBoard">F7</button></td>
+						<td><button id="i57" class="AiBoard">F8</button></td>
+						<td><button id="i58" class="AiBoard">F9</button></td>				
+					</tr>				
+					<tr>
+						<td id="alphaLabel"><b>G</b></td>
+						<td><button id="i60" class="AiBoard">G1</button></td>
+						<td><button id="i61" class="AiBoard">G2</button></td>
+						<td><button id="i62" class="AiBoard">G3</button></td>
+						<td><button id="i63" class="AiBoard">G4</button></td>
+						<td><button id="i64" class="AiBoard">G5</button></td>
+						<td><button id="i65" class="AiBoard">G6</button></td>
+						<td><button id="i66" class="AiBoard">G7</button></td>
+						<td><button id="i67" class="AiBoard">G8</button></td>
+						<td><button id="i68" class="AiBoard">G9</button></td>				
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>H</b></td>
+						<td><button id="i70" class="AiBoard">H1</button></td>
+						<td><button id="i71" class="AiBoard">H2</button></td>
+						<td><button id="i72" class="AiBoard">H3</button></td>
+						<td><button id="i73" class="AiBoard">H4</button></td>
+						<td><button id="i74" class="AiBoard">H5</button></td>
+						<td><button id="i75" class="AiBoard">H6</button></td>
+						<td><button id="i76" class="AiBoard">H7</button></td>
+						<td><button id="i77" class="AiBoard">H8</button></td>
+						<td><button id="i78" class="AiBoard">H9</button></td>				
+					</tr>
+					<tr>
+						<td id="alphaLabel"><b>I</b></td>
+						<td><button id="i80" class="AiBoard">I1</button></td>
+						<td><button id="i81" class="AiBoard">I2</button></td>
+						<td><button id="i82" class="AiBoard">I3</button></td>
+						<td><button id="i83" class="AiBoard">I4</button></td>
+						<td><button id="i84" class="AiBoard">I5</button></td>
+						<td><button id="i85" class="AiBoard">I6</button></td>
+						<td><button id="i86" class="AiBoard">I7</button></td>
+						<td><button id="i87" class="AiBoard">I8</button></td>
+						<td><button id="i88" class="AiBoard">I9</button></td>				
+					</tr>
+				</table>		
+			</div>			
+			<!--Explains if you hit another ship or missed-->
+			<div id='previousTurnInformation'>
+				<label id="hitOrMiss">Select a ship from the right side!</label>
+				<!--Rotate your ship using W,A,S,D. Left mouse click to place ship!-->
+			</div>
+			<!-- Consists of buttons and other information-->
+			<div id="missileLock">
+				<input disabled type="text" id="missileLockLocation">
+				<button id="btnClickAiTurn">Let AI Go!</button>
+			</div>
+		</div>
+		<!--This game screen is shown when the game has ended and displays game summary-->
+		<div id="endGameScreen">
+			<label id="winOrLose">You __ the war!</label>
+			<br>
+			<label id="timeElapsed" class="rainbow-text">The war lasted __ days</label>
+			<br>
+			<label id="aiShipsPiecesHit" class="rainbow-text">You hit the enemy __ times</label>
+			<br>
+			<label id="aiShipsMissed" class="rainbow-text">You missed __ shots on the enemy ships</label>
+			<br>
+			<label id="yourShipsHit" class="rainbow-text">Your enemy hit you __ times</label>
+			<br>
+			<label id="yourShipsMissed" class="rainbow-text">Your enemy missed you __ times</label>
+			<br>
+			<button id="btnPlayAgain">Play Again!</button>
+			<br>
+			<button id="btnExit">Exit Game!</button>
+			<br>
+		</div>
+	</body>
+</html>
